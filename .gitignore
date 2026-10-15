@@ -1,0 +1,13 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+*.onnx
+*.pt
+*.pth
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
