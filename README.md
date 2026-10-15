@@ -127,7 +127,7 @@ flowchart LR
         V["<b>2 · Scripted + vision assist</b><br/>script is the backbone;<br/>vision adds a clamped<br/>±13° roll trim near gates"]
         A["<b>3 · Autonomous</b><br/>no script — roll and thrust<br/>servo directly on gate bearing"]
     end
-    S --> R1["reached <b>6 of 15</b> gates"]
+    S --> R1["reached <b>about half</b><br/>the course"]
     V --> R2["same reach,<br/>fewer gate strikes"]
     A --> R3["never validated:<br/>the camera handle<br/>was never initialised"]
 
@@ -239,7 +239,7 @@ constant.
 | PnP reprojection error | **0.33 px** median, 94.8% under 2 px | competition sim, 1,254 observations |
 | CNN inference CPU → GPU | **437 ms → 21.6 ms (20×)** | ONNX Runtime + DirectML, GTX 1650 |
 | Gate sighting interval | **0.035 s** median, 98.4% under 0.5 s | competition sim, 6 runs |
-| **Course reached** | **6 of 15 gates** | **competition sim** |
+| **Course reached** | **about half the course** (~7-8 gates) | **competition sim** |
 | RL environment throughput | **383k steps/s** idle, **50k** training | 8-core CPU, no GPU |
 | RL per-gate success | **94–100% on 14 of 15 gates** | **custom sim** |
 | RL gates per episode | 0.00 → **2.22** | **custom sim** |
@@ -251,13 +251,21 @@ reconstructed from a hand-drawn map fused with measured leg lengths and
 altitudes. **The RL agent receives gate positions directly, not through the
 camera, and has never flown the competition simulator.**
 
-The scripted stack reached **6 of 15 gates**. No lap was completed.
+The scripted stack reached **about half the course** — roughly 7-8 gates.
+Two caveats on that number, both of which I only pinned down afterwards: the
+simulator's `active_gate_index` starts at **0**, so a reported "gate 6" is the
+**seventh** gate passed; and the hand-drawn course map is missing one or two
+gates at the far end, so the denominator is approximate too. The course is a
+single lap-free circuit, and **it was never completed** — the second half was
+never flown, so nothing beyond the halfway point in this repository is
+measured.
 
 ![course](media/course.png)
 
 *Course reconstruction. Filled green gates were measured from 50 logged runs;
-hollow red are estimated from the hand-drawn map — the drone never flew past
-gate 6, so everything beyond it is inference.*
+hollow red are estimated from the hand-drawn map. The drone never flew the
+second half, so everything past the halfway point is inference — and the map
+itself is missing one or two gates at the far end.*
 
 ---
 

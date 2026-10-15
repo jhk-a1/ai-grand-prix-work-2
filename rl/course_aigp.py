@@ -13,7 +13,9 @@ Two sources, each used only for what it is good for.
     speed across it times the elapsed time. Those are real measurements with
     real error bars.
 
-Measured, gates 1-6 (n=50 runs, sd in brackets):
+Measured (n=50 runs, sd in brackets). NOTE these are the simulator's raw
+`active_gate_index` values, which start at 0 -- index 6 is the SEVENTH gate
+passed. The indices are left as logged so they match the raw data:
 
     gate   alt m        speed m/s      leg -> next
     1      3.54 (0.29)   4.75 (0.37)   10.8 m
@@ -23,7 +25,9 @@ Measured, gates 1-6 (n=50 runs, sd in brackets):
     5      7.99 (1.05)  21.30 (1.82)   59.3 m
     6      6.00 (0.86)  24.41 (0.56)   -
 
-Past gate 6 nothing has ever been measured -- the drone has not been there.
+Past index 6 nothing has ever been measured -- the drone never flew the
+second half of the course. The hand-drawn map is also missing one or two
+gates at the far end, so the total of 15 is approximate.
 Those legs are scaled by the median measured factor and their altitudes come
 from the sketch arrows, and they are flagged as estimates in `measured`.
 """
